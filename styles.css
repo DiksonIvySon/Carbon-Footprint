@@ -169,8 +169,8 @@ header > div {
     margin: 0;
 }
 
-/* styling the first page content ...........................................................*/
-.firstPage {
+/* styling the home page content ...........................................................*/
+.homePage {
     max-height: 100vh;
     background-color: gray;
 }
