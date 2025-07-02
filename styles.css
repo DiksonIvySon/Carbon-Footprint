@@ -46,7 +46,7 @@ header > div {
     justify-content: space-between;
     align-items: center;
     /*background-color: rgba(130, 130, 130, 0.5);*/
-    background-color: #2e3c47;
+    background-color: #0b3b3c;
     opacity: 0.9;
     position: absolute;
     width: 70vw;
@@ -86,15 +86,6 @@ header > div {
 .logo h1 {
     margin: 0 ;
     padding: 0;
-}
-
-.mobile-nav-toggle {
-    display: none;
-}
-
-.mobile-nav-toggle-span i:hover {
-    cursor: pointer;
-    color: #5badcc;
 }
 
 .primary-navigation {
@@ -173,4 +164,46 @@ header > div {
 .homePage {
     max-height: 100vh;
     background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(Images/homebackground-image.jpeg);
+    background-size: cover;
+}
+
+.homePage .home-page-main-text {
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.homePage .home-page-main-text .home-page-heading {
+    padding: 10px 20px;
+    margin: 20px;
+    color: white;
+    font-size: 80px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.homePage .home-page-main-text p {
+    padding: 10px 20px;
+    border-radius: 0px 0px 0px 10px;
+    backdrop-filter: blur(10px);
+    margin: 20px;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    background-color: #90c8d1;
+    font-weight: bold;
+    font-size: 20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.homePage .home-page-main-text button {
+
 }
