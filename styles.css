@@ -222,6 +222,33 @@ button {
     border-radius: 50px 50px 0px 0px;
 }
 
+.info-page .defining-container {
+    position: relative;
+}
+
+.info-page .defining-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.info-page .images {
+    position: relative;
+    background-color: red;
+}
+
+.info-page .defining-container .main-img {
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.info-page .defining-container .small-top-img {
+    position: absolute;
+    left: 0px;
+    bottom: -150px;
+    border-radius: 10px;
+}
+
 
 /* Styling the footer section...........................................................................................................*/
 
