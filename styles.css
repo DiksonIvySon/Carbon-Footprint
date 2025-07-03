@@ -169,6 +169,7 @@ header > div {
     justify-content: center;
     background-image: url(Images/homebackground-image.jpeg);
     background-size: cover;
+    padding-bottom: 80px;
 }
 
 .homePage .home-page-main-text {
@@ -204,11 +205,23 @@ button {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-/* .homePage .home-page-main-text button {
+/* Styling the info page...............................................................................................................*/
+.info-page {
+    position: relative;
+}
 
-} */
+.info-page .top-dividing-curve {
+    height: 50px;
+    width: 100vw;
+    background-image: linear-gradient(0deg , #0b3b3c, #609596, white);
+    background-color: #0b3b3c;
+    position: absolute;
+    top: -50px;
+    border-radius: 50px 50px 0px 0px;
+}
 
-/* Styling the footer section*/
+
+/* Styling the footer section...........................................................................................................*/
 
 footer {
     text-align: center;
