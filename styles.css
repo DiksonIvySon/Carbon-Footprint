@@ -153,6 +153,10 @@ header > div {
     padding-top: 63px;
 } 
 
+.section-padding {
+    padding: 0px 50px;
+}
+
 .pageHeading {
     padding: 1rem;
     font-size: 2rem;
@@ -223,30 +227,45 @@ button {
 }
 
 .info-page .defining-container {
-    position: relative;
-}
-
-.info-page .defining-container {
     display: flex;
-    align-items: center;
     justify-content: space-evenly;
+    gap: 40px;
 }
 
-.info-page .images {
+/* .info-page .images {
     position: relative;
-    background-color: red;
+} */
+
+.info-page .defining-container > div {
+    max-width: 500px;
 }
 
 .info-page .defining-container .main-img {
-    max-width: 500px;
+    max-width: 600px;
+    height: auto;
     border-radius: 10px;
+
 }
 
-.info-page .defining-container .small-top-img {
-    position: absolute;
-    left: 0px;
-    bottom: -150px;
+.info-page .small-top-img img{
     border-radius: 10px;
+    width: 100%;
+    max-height: 100px;
+    object-fit: cover;
+} 
+
+.info-page .defining-container .defining-info {
+    color: white;
+}
+
+.info-page .defining-container .defining-info h2 {
+    font-size: 40px;
+}
+
+.info-page .defining-container .defining-info p {
+    margin-bottom: 50px;
+    margin-left: 20px;
+    margin: 10px 0px 50px 20px;
 }
 
 
