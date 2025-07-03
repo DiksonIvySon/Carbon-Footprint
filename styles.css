@@ -268,9 +268,10 @@ footer h2 {
 .dropbtn {
   background-color: #90c8d1;
   color: white;
-  padding: 16px;
+  padding: 16px 23px;
   font-size: 16px;
   border: none;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .dropdown {
@@ -291,7 +292,10 @@ footer h2 {
     display: flex;
 }
 
-/* Links inside the dropdown */
+.dropdown-content > div a {
+    flex: 1;
+}
+
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
