@@ -153,6 +153,10 @@ header > div {
     padding-top: 63px;
 } 
 
+.section-padding {
+    padding: 0px 50px;
+}
+
 .pageHeading {
     padding: 1rem;
     font-size: 2rem;
@@ -169,6 +173,7 @@ header > div {
     justify-content: center;
     background-image: url(Images/homebackground-image.jpeg);
     background-size: cover;
+    padding-bottom: 80px;
 }
 
 .homePage .home-page-main-text {
@@ -204,11 +209,138 @@ button {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-/* .homePage .home-page-main-text button {
+/* Styling the info page...............................................................................................................*/
+.info-page {
+    position: relative;
+    background-color: #0b3b3c;
+    border-radius: 0px 0px 50px 50px;
+    padding-bottom: 200px;
+}
 
+.info-page .top-dividing-curve {
+    height: 50px;
+    width: 100vw;
+    /* background-image: linear-gradient(0deg , #0b3b3c, #609596, white); */
+    background-color: #0b3b3c;
+    position: absolute;
+    top: -50px;
+    border-radius: 50px 50px 0px 0px;
+}
+
+.info-page .defining-container {
+    display: flex;
+    
+    justify-content: space-evenly;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* .info-page .images {
+    position: relative;
 } */
 
-/* Styling the footer section*/
+.info-page .defining-container > div {
+    flex: 1;
+}
+
+.info-page .defining-container .main-img {
+    max-width: 80vw;
+    height: auto;
+}
+
+.info-page .defining-container .main-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    min-width: 600px;
+}
+
+.info-page .small-top-img img{
+    border-radius: 10px;
+    width: 100%;
+    max-height: 100px;
+    object-fit: cover;
+} 
+
+.info-page .defining-container .defining-info {
+    color: white;
+    min-width: 350px;
+}
+
+.info-page .defining-container .defining-info h2 {
+    font-size: 40px;
+}
+
+.info-page .defining-container .defining-info p {
+    margin-bottom: 50px;
+    margin-left: 20px;
+    margin: 10px 0px 50px 20px;
+}
+
+.info-page .states-container {
+    position: absolute;
+    width: 100vw;
+    bottom: -190px;
+}
+
+.info-page .stat-cards {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.info-page .stat-cards .stat-card {
+    flex: 1;
+    background-color: #6d6c6c;
+    padding: 40px 10px 40px 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.info-page .stat-cards .stat-card1 {
+    background-image: url(Images/global-image.jpg);
+    background-size: cover;
+}
+
+.info-page .stat-cards .stat-card2 {
+    background-image: url(Images/average-per-person.jpg);
+    background-size: cover;
+}
+
+.info-page .stat-cards .stat-card3 {
+    background-image: url(Images/SA-background.jpg);
+    background-size: cover;
+}
+
+.info-page .stat-cards .stat-card > div {
+    margin-bottom: 50px;
+}
+
+.info-page .stat-cards > div h1 {
+    font-size: 80px;
+    font-weight: bold;
+    color: #5badcc;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.info-page .stat-cards .stat-card p {
+    background-color: black;
+    color: white;
+    padding-inline: 20px;
+    max-width: 250px;
+    margin: auto;
+}
+
+.info-page .stat-cards .stat-card h3 {
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    font-size: 20px;
+    color: white;
+}
+
+
+
+/* Styling the footer section...........................................................................................................*/
 
 footer {
     text-align: center;
