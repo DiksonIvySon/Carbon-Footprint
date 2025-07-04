@@ -229,8 +229,10 @@ button {
 
 .info-page .defining-container {
     display: flex;
+    
     justify-content: space-evenly;
     gap: 40px;
+    flex-wrap: wrap;
 }
 
 /* .info-page .images {
@@ -238,13 +240,19 @@ button {
 } */
 
 .info-page .defining-container > div {
-    max-width: 500px;
+    flex: 1;
 }
 
 .info-page .defining-container .main-img {
-    max-width: 600px;
+    max-width: 80vw;
+    height: auto;
+}
+
+.info-page .defining-container .main-img img {
+    width: 100%;
     height: auto;
     border-radius: 10px;
+    min-width: 600px;
 }
 
 .info-page .small-top-img img{
@@ -256,6 +264,7 @@ button {
 
 .info-page .defining-container .defining-info {
     color: white;
+    min-width: 350px;
 }
 
 .info-page .defining-container .defining-info h2 {
@@ -285,9 +294,21 @@ button {
     background-color: #6d6c6c;
     padding: 40px 10px 40px 10px;
     text-align: center;
-    min-width: 250px;
     border-radius: 10px;
-    background-image: url(Images/sustainability-hero.jpeg);
+}
+
+.info-page .stat-cards .stat-card1 {
+    background-image: url(Images/global-image.jpg);
+    background-size: cover;
+}
+
+.info-page .stat-cards .stat-card2 {
+    background-image: url(Images/average-per-person.jpg);
+    background-size: cover;
+}
+
+.info-page .stat-cards .stat-card3 {
+    background-image: url(Images/SA-background.jpg);
     background-size: cover;
 }
 
@@ -297,6 +318,9 @@ button {
 
 .info-page .stat-cards > div h1 {
     font-size: 80px;
+    font-weight: bold;
+    color: #5badcc;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .info-page .stat-cards .stat-card p {
@@ -311,6 +335,7 @@ button {
     backdrop-filter: blur(10px);
     padding: 20px;
     font-size: 20px;
+    color: white;
 }
 
 
