@@ -214,6 +214,7 @@ button {
     position: relative;
     background-color: #0b3b3c;
     border-radius: 0px 0px 50px 50px;
+    padding-bottom: 200px;
 }
 
 .info-page .top-dividing-curve {
@@ -286,6 +287,8 @@ button {
     text-align: center;
     min-width: 250px;
     border-radius: 10px;
+    background-image: url(Images/sustainability-hero.jpeg);
+    background-size: cover;
 }
 
 .info-page .stat-cards .stat-card > div {
@@ -295,6 +298,21 @@ button {
 .info-page .stat-cards > div h1 {
     font-size: 80px;
 }
+
+.info-page .stat-cards .stat-card p {
+    background-color: black;
+    color: white;
+    padding-inline: 20px;
+    max-width: 250px;
+    margin: auto;
+}
+
+.info-page .stat-cards .stat-card h3 {
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    font-size: 20px;
+}
+
 
 
 /* Styling the footer section...........................................................................................................*/
