@@ -267,12 +267,20 @@ button {
     margin: 10px 0px 50px 20px;
 }
 
+.info-page .states-container {
+    position: absolute;
+    width: 100vw;
+    bottom: -190px;
+}
+
 .info-page .stat-cards {
     display: flex;
     justify-content: space-evenly;
+    gap: 20px;
 }
 
 .info-page .stat-cards .stat-card {
+    flex: 1;
     background-color: #6d6c6c;
     padding: 40px 10px 40px 10px;
     text-align: center;
