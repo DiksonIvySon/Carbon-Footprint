@@ -108,40 +108,44 @@
 
         <section id="logging-Page" class="logging-Page pageSection">
             <h1>Track Your Carbon Footprint</h1>
+            <div>
+                <div class="user-inputs">
+                    <form id="activity-form">
+                        <select id="activity-type">
+                            <option value="car" data-category="transport">Car Travel (km)</option>
+                            <option value="bus" data-category="transport">Bus Travel (km)</option>
+                            <option value="flight" data-category="transport">Flight (km)</option>
+                            <option value="meat" data-category="food">Meat Consumption (kg)</option>
+                            <option value="dairy" data-category="food">Dairy Consumption (kg)</option>
+                            <option value="vegetables" data-category="food">Vegetables (kg)</option>
+                            <option value="electricity" data-category="energy">Electricity (kWh)</option>
+                            <option value="gas" data-category="energy">Gas Use (m3)</option>
+                        </select>
+                        <input type="number" id="activity-amount" placeholder="Amount" required>
+                        <button type="submit">Add Activity</button>
+                    </form>
 
-            <form id="activity-form">
-                <select id="activity-type">
-                <option value="car" data-category="transport">Car Travel (km)</option>
-                <option value="bus" data-category="transport">Bus Travel (km)</option>
-                <option value="flight" data-category="transport">Flight (km)</option>
-                <option value="meat" data-category="food">Meat Consumption (kg)</option>
-                <option value="dairy" data-category="food">Dairy Consumption (kg)</option>
-                <option value="vegetables" data-category="food">Vegetables (kg)</option>
-                <option value="electricity" data-category="energy">Electricity (kWh)</option>
-                <option value="gas" data-category="energy">Gas Use (m3)</option>
-                </select>
-                <input type="number" id="activity-amount" placeholder="Amount" required>
-                <button type="submit">Add Activity</button>
-            </form>
+                    <div class="filter-section">
+                        <label for="category-filter">Filter by Category:</label>
+                        <select id="category-filter">
+                        <option value="all">All</option>
+                        <option value="transport">Transport</option>
+                        <option value="food">Food</option>
+                        <option value="energy">Energy</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="visualization">
+                    <div class="total-section">
+                        <strong>Total CO₂ Emissions:</strong> <span id="total-emissions">0</span> kg
+                    </div>
 
-            <div class="filter-section">
-                <label for="category-filter">Filter by Category:</label>
-                <select id="category-filter">
-                <option value="all">All</option>
-                <option value="transport">Transport</option>
-                <option value="food">Food</option>
-                <option value="energy">Energy</option>
-                </select>
-            </div>
+                    <div id="activity-log-container"></div>
 
-            <div class="total-section">
-                <strong>Total CO₂ Emissions:</strong> <span id="total-emissions">0</span> kg
-            </div>
-
-            <div id="activity-log-container"></div>
-
-            <div class="chart-container">
-                <canvas id="emissionsChart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="emissionsChart"></canvas>
+                    </div>
+                </div>
             </div>
         </section>   
         

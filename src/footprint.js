@@ -14,6 +14,10 @@ const emissionsFactors = {
     gas: 2.1
 };
 
+function calculateTotal() {
+    return activities.reduce((sum, act) => sum + act.co2, 0).toFixed(2);
+}
+
 function renderActivities() {
     logContainer.innerHTML = '';
     const selected = filter.value;
