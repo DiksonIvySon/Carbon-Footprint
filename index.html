@@ -4,41 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Footprint Logger</title>
-    <link rel="shortcut icon" type="x-icon" href="">
+    <link rel="shortcut icon" type="x-icon" href="Images/carbon-footprint-logo.webp">
     <link rel="stylesheet" href="styles.css">
     <!--font awesome CDN-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Script-->
-    <script src="src/footprint.js" defer></script>
+    <!--Chart Script-->
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="body">
     <header>
         <div>
             <div class="logo">
                 <div>
-                    <div class="logo-name">
-                        <a href="#firstPage">
-                            <h1>FootPrint</h1>
-                            <h3 class="italic-surname">Logger</h3>
-                        </a>
-                    </div>
+                    <a href="#home-page">
+                        <h1>FootPrint</h1>
+                        <h3>Logger</h3>
+                    </a>
                 </div>
             </div>
     
             <nav>
                 <ul id="primary-navigation"  class="primary-navigation" >
                     <li class="nav-item"><a id="nav-link" class="nav-link" href="#info-page">INFORMATION</a></li>
-                    <li class="nav-item"><a id="nav-link2" class="nav-link" href="#logging-Page">LOGGING</a></li>
-                    <li class="nav-item"><a id="nav-link3" class="nav-link" href="#tips-Page">TIPS</a></li>
+                    <li class="nav-item"><a id="nav-link2" class="nav-link" href="#logging-page">LOGGING</a></li>
+                    <li class="nav-item"><a id="nav-link3" class="nav-link" href="#tips-page">TIPS</a></li>
                 </ul>
             </nav>
         </div>
     </header> 
 
     <main style="position: relative">
-        <section id="home-Page" class="homePage pageSection">
+        <section id="home-page" class="homePage pageSection">
             <div class="home-page-main-text">
                 <div class="home-page-heading">
                     <h1>Footprint</h1>
@@ -56,7 +54,6 @@
             <div class="defining-container section-padding">
                 <div class="main-img">
                     <img src="Images/0_P_jXJi7swokxtBg6.bin" alt="">
-                    <!-- <img class="small-top-img" src="Images/emissions-reduction-image.jpg" alt=""> -->
                 </div>
                 <div class="defining-info">
                     <h2>What is a Carbon Footprint?</h2>
@@ -72,12 +69,6 @@
                     </p>
                 </div>
             </div>
-
-            <!-- <div class="small-top-img section-padding">
-                <img src="Images/emissions-reduction-image.jpg" alt="">
-            </div> -->
-
-            <!-- <div><h1 class="section-heading">Current stats</h1></div> -->
 
             <div class="states-container section-padding">
                 <div class="stat-cards">
@@ -106,11 +97,53 @@
             </div>
         </section>
 
-        <section id="logging-Page" class="logging-Page pageSection">
-            logger-page
+        <section id="logging-page" class="logging-page pageSection">
+            <h1 class="pageHeading">Track Your Carbon Footprint</h1>
+            <div class="logging-main-content">
+                <div class="user-inputs">
+                    <form id="activity-form">
+                        <div>
+                            <select id="activity-type">
+                                <option value="car" data-category="transport">Car Travel (km)</option>
+                                <option value="bus" data-category="transport">Bus Travel (km)</option>
+                                <option value="flight" data-category="transport">Flight (km)</option>
+                                <option value="meat" data-category="food">Meat Consumption (kg)</option>
+                                <option value="dairy" data-category="food">Dairy Consumption (kg)</option>
+                                <option value="vegetables" data-category="food">Vegetables (kg)</option>
+                                <option value="electricity" data-category="energy">Electricity (kWh)</option>
+                                <option value="gas" data-category="energy">Gas Use (m3)</option>
+                            </select>
+                            <input type="number" id="activity-amount" placeholder="Amount" required>
+                        </div>
+                        <button type="submit">Add Activity</button>
+                    </form>
+
+                    <div class="filter-section">
+                        <label for="category-filter">Filter by Category:</label>
+                        <select id="category-filter">
+                        <option value="all">All</option>
+                        <option value="transport">Transport</option>
+                        <option value="food">Food</option>
+                        <option value="energy">Energy</option>
+                        </select>
+                    </div>
+
+                    <h2>Activities</h2>
+                     <div id="activity-log-container"></div>
+                </div>
+                <div class="visualization">
+                    <div class="total-section">
+                        <strong>Total CO₂ Emissions:</strong> <span id="total-emissions">0</span> kg
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="emissionsChart"></canvas>
+                    </div>
+                </div>
+            </div>
         </section>   
         
-        <section id="tips-Page" class="tipsPost-Page tip-Page pageSection">
+        <section id="tips-page" class="tipsPost-Page tip-Page pageSection">
             <h1 class="pageHeading">Tips</h1>
             <p class="tip-page-slogan">Heal the world, make it a better place for you and for me and the entire human race.</p>
             <div class="scroll-container">
@@ -260,7 +293,7 @@
             <div>
                 <h2>Powered By</h2>
                 <a target="_blank" href="">
-                    <img src="" alt="">
+                    <img src="Images/localstorage-feature.webp" alt="JS localstorage API image" style="width: 150px;">
                 </a>
             </div>
 
@@ -269,19 +302,19 @@
 
                 <ul class="site-footer-links">
                     <li class="site-footer-link-item">
-                        <a href="#home-Page" class="site-footer-link">HOME</a>
+                        <a href="#home-page" class="site-footer-link">HOME</a>
                     </li>
 
                     <li class="site-footer-link-item">
-                        <a href="#info-Page" class="site-footer-link">INFORMATION</a>
+                        <a href="#info-page" class="site-footer-link">INFORMATION</a>
                     </li>
 
                     <li class="site-footer-link-item">
-                        <a href="#logging-Page" class="site-footer-link">LOGGING</a>
+                        <a href="#logging-page" class="site-footer-link">LOGGING</a>
                     </li>
 
                     <li class="site-footer-link-item">
-                        <a href="#tips-Page" class="site-footer-link">TIPS</a>
+                        <a href="#tips-page" class="site-footer-link">TIPS</a>
                     </li>
                 </ul>
             </div>
@@ -305,5 +338,8 @@
             Copyright © 2025 <a target="_blank" href="https://diksonivyson.github.io/My_Portfolio/" class="web-author">Dikson Manganye</a>. All rights reserved
         </p>
     </footer>
+
+    <!--Functionality Script-->
+    <script src="src/footprint.js" defer></script>
 </body>
 </html>

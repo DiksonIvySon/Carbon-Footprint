@@ -24,13 +24,13 @@ body {
     font-family: San-Francisco, Helvetica, Arial, Georgia, Tahoma, sans-serif;
 }
 
-/* Hide scrollbar but still be able to scroll ******************************************************/
+/* Hide scrollbar but still be able to scroll .................................................................................../
 /* Hide scrollbar for Chrome, Safari and Opera */
 body::-webkit-scrollbar {
     display: none;
 }
 
-/* Styling the header ................................................................*/
+/* Styling the header ...........................................................................................................*/
 header {
     position: sticky;
     top: 0;
@@ -45,10 +45,8 @@ header > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*background-color: rgba(130, 130, 130, 0.5);*/
-    background-color: #0b3b3c;
-    background-color: white;
-    /* opacity: 0.9; */
+    background-image: url(Images/nav-background.jpg);
+    background-size: cover;
     position: absolute;
     width: 70vw;
     padding: 5px 0px 5px 0px;
@@ -61,27 +59,14 @@ header > div {
     position: relative;
 }
 
-.italic-surname {
-    position: absolute;
-    top: 16px;
-    right: -20px;
-    font-family: 'Italianno', cursive;
-    color: gray;
-    transition: 1s ease;
-}
-
-.italic-surname:hover {
-    color: #607d94;
-}
-
 .logo a {
     text-decoration: none;
-    color: black;
-    transition: 1s ease;
+    color: white;
+    transition: 0.5s ease;
 }
 
 .logo a:hover {
-    color: #607d94;
+    color: #90c8d1;
 }
 
 .logo h1 {
@@ -105,7 +90,7 @@ header > div {
 
 .nav-link {
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: bold;
     position: relative;
     transition: all 0.4s;
@@ -151,7 +136,7 @@ header > div {
     border-radius: 5px 5px 0px 0px ;
 }
 
-/* Styling the sections ...........................................................................*/
+/* Default sections styling .........................................................................................................*/
 
 .pageSection {
     min-height: calc(100vh);
@@ -165,9 +150,10 @@ header > div {
 
 .pageHeading {
     padding: 1rem;
-    font-size: 2rem;
+    font-size: 4rem;
     text-align: center;
-    margin: 0;
+    margin-bottom: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 button {
@@ -184,7 +170,7 @@ button:hover {
     cursor: pointer;
 }
 
-/* styling the home page content ...........................................................*/
+/* styling the home page content ...................................................................................................*/
 .homePage {
     max-height: 100vh;
     background-color: gray;
@@ -239,7 +225,6 @@ button:hover {
 .info-page .top-dividing-curve {
     height: 50px;
     width: 100vw;
-    /* background-image: linear-gradient(0deg , #0b3b3c, #609596, white); */
     background-color: #0b3b3c;
     position: absolute;
     top: -50px;
@@ -253,10 +238,6 @@ button:hover {
     gap: 40px;
     flex-wrap: wrap;
 }
-
-/* .info-page .images {
-    position: relative;
-} */
 
 .info-page .defining-container > div {
     flex: 1;
@@ -355,6 +336,71 @@ button:hover {
     padding: 20px;
     font-size: 20px;
     color: white;
+}
+
+/*Styling the logging page........................................................................................................*/
+.logging-page {
+    padding-top: 80px;
+    margin: 45px;
+}
+
+.logging-page .logging-main-content {
+    font-family: Arial, sans-serif;
+    display: flex;
+    gap: 30px;
+    padding: 10px;
+}
+
+.logging-main-content .visualization {
+    flex: 1;
+}
+
+.logging-main-content .visualization .total-section strong {
+    font-size: 30px;
+}
+
+.logging-main-content .visualization .total-section #total-emissions {
+    font-size: 50px;
+    color: #90c8d1;
+}
+
+.logging-main-content .visualization .chart-container #emissionsChart{
+    width: 100%;
+}
+
+.logging-page form, .filter-section, .chart-container , #activity-log-container{
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
+}
+
+.logging-page .chart-container {
+    background-color: #0b3b3c;
+    color: white;
+}
+
+.logging-page select, input , button {
+    padding: 8px;
+    margin: 5px;
+}
+
+.logging-page .activity-log {
+    background: #fff;
+    color: #0b3b3c;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+} 
+
+.logging-page select:hover {
+  cursor: pointer;
+}
+
+.logging-page select option:hover {
+  background-color: #0b3b3c;
+  color: #000;
 }
 
 /*Styling the tips page...........................................................................................................*/
