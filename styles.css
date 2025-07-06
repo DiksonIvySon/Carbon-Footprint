@@ -347,6 +347,51 @@ button:hover {
     color: white;
 }
 
+/*Styling the logging page........................................................................................................*/
+
+
+.logging-page .logging-main-content {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+    /* max-width: 800px; */
+    margin: auto;
+    display: flex;
+    gap: 30px;
+}
+
+.logging-main-content .visualization {
+    flex: 1;
+}
+
+.logging-main-content .visualization .chart-container #emissionsChart{
+    width: 100%;
+}
+
+.logging-page .logging-main-content h1 {
+    text-align: center;
+}
+
+.logging-page form, .filter-section, .total-section, .chart-container {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.logging-page select, input , button {
+    padding: 8px;
+    margin: 5px;
+}
+
+.logging-page .activity-log {
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+} 
+
 /*Styling the tips page...........................................................................................................*/
 .tipsPost-Page {
     text-align: center;
