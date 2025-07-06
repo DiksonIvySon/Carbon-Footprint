@@ -45,3 +45,28 @@ form.addEventListener('submit', e => {
 });
 
 filter.addEventListener('change', renderActivities);
+
+const ctx = document.getElementById('emissionsChart').getContext('2d');
+const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+    labels: [],
+    datasets: [{
+        label: 'CO₂ Emissions by Activity',
+        data: [],
+        backgroundColor: '#6a0dad'
+    }]
+    },
+    options: {
+    responsive: true,
+    scales: {
+        y: {
+        beginAtZero: true,
+        title: {
+            display: true,
+            text: 'kg CO₂'
+        }
+        }
+    }
+    }
+});
