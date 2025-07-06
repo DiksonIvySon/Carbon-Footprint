@@ -70,3 +70,16 @@ const chart = new Chart(ctx, {
     }
     }
 });
+
+function updateChart() {
+    const totals = {};
+    activities.forEach(act => {
+    if (!totals[act.type]) totals[act.type] = 0;
+    totals[act.type] += act.co2;
+    });
+    chart.data.labels = Object.keys(totals);
+    chart.data.datasets[0].data = Object.values(totals);
+    chart.update();
+}
+
+saveAndRender();
