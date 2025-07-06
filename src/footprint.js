@@ -14,6 +14,14 @@ const emissionsFactors = {
     gas: 2.1
 };
 
+let activities = JSON.parse(localStorage.getItem('activities')) || [];
+
+function saveAndRender() {
+    localStorage.setItem('activities', JSON.stringify(activities));
+    renderActivities();
+    updateChart();
+}
+
 function calculateTotal() {
     return activities.reduce((sum, act) => sum + act.co2, 0).toFixed(2);
 }
