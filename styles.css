@@ -45,9 +45,8 @@ header > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*background-color: rgba(130, 130, 130, 0.5);*/
-    background-color: #0b3b3c;
-    background-color: white;
+    background-image: url(Images/nav-background.jpg);
+    background-size: cover;
     /* opacity: 0.9; */
     position: absolute;
     width: 70vw;
@@ -61,22 +60,13 @@ header > div {
     position: relative;
 }
 
-.italic-surname {
-    position: absolute;
-    top: 16px;
-    right: -20px;
-    font-family: 'Italianno', cursive;
-    color: gray;
-    transition: 1s ease;
-}
-
 .italic-surname:hover {
     color: #607d94;
 }
 
 .logo a {
     text-decoration: none;
-    color: black;
+    color: white;
     transition: 1s ease;
 }
 
@@ -105,7 +95,7 @@ header > div {
 
 .nav-link {
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: bold;
     position: relative;
     transition: all 0.4s;
