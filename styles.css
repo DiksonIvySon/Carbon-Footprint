@@ -60,18 +60,14 @@ header > div {
     position: relative;
 }
 
-.italic-surname:hover {
-    color: #607d94;
-}
-
 .logo a {
     text-decoration: none;
     color: white;
-    transition: 1s ease;
+    transition: 0.5s ease;
 }
 
 .logo a:hover {
-    color: #607d94;
+    color: #90c8d1;
 }
 
 .logo h1 {
@@ -350,7 +346,7 @@ button:hover {
 
 /*Styling the logging page........................................................................................................*/
 .logging-page {
-    padding-top: 130px;
+    padding-top: 80px;
     margin: 45px;
 }
 
@@ -365,6 +361,15 @@ button:hover {
 
 .logging-main-content .visualization {
     flex: 1;
+}
+
+.logging-main-content .visualization .total-section strong {
+    font-size: 30px;
+}
+
+.logging-main-content .visualization .total-section #total-emissions {
+    font-size: 50px;
+    color: #90c8d1;
 }
 
 .logging-main-content .visualization .chart-container #emissionsChart{
@@ -396,6 +401,15 @@ button:hover {
     border-radius: 5px;
     margin-bottom: 5px;
 } 
+
+.logging-page select:hover {
+  cursor: pointer;
+}
+
+.logging-page select option:hover {
+  background-color: #0b3b3c;
+  color: #000;
+}
 
 /*Styling the tips page...........................................................................................................*/
 .tipsPost-Page {

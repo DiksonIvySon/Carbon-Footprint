@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
       datasets: [{
         label: 'CO₂ Emissions by Activity',
         data: [],
-        backgroundColor: '#6a0dad'
+        backgroundColor: '#90c8d1'
       }]
     },
     options: {
