@@ -155,9 +155,10 @@ header > div {
 
 .pageHeading {
     padding: 1rem;
-    font-size: 2rem;
+    font-size: 4rem;
     text-align: center;
-    margin: 0;
+    margin-bottom: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 button {
@@ -348,16 +349,18 @@ button:hover {
 }
 
 /*Styling the logging page........................................................................................................*/
-
+.logging-page {
+    padding-top: 130px;
+    margin: 45px;
+}
 
 .logging-page .logging-main-content {
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    padding: 20px;
-    /* max-width: 800px; */
-    margin: auto;
+    /* background: #f4f4f4; */
+    /* background-image: linear-gradient(0deg, #494747, white ); */
     display: flex;
     gap: 30px;
+    padding: 10px;
 }
 
 .logging-main-content .visualization {
@@ -368,16 +371,17 @@ button:hover {
     width: 100%;
 }
 
-.logging-page .logging-main-content h1 {
-    text-align: center;
-}
-
-.logging-page form, .filter-section, .total-section, .chart-container {
-    background: #fff;
+.logging-page form, .filter-section, .chart-container , #activity-log-container{
+    background: #f4f4f4;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
     margin-bottom: 20px;
+}
+
+.logging-page .chart-container {
+    background-color: #0b3b3c;
+    color: white;
 }
 
 .logging-page select, input , button {
@@ -387,9 +391,10 @@ button:hover {
 
 .logging-page .activity-log {
     background: #fff;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
+    color: #0b3b3c;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
 } 
 
 /*Styling the tips page...........................................................................................................*/
