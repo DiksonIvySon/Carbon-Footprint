@@ -118,5 +118,26 @@ document.addEventListener('DOMContentLoaded', function () {
     chart.update();
   }
 
-  saveAndRender();
+  async function login(email, password) {
+    const res = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+      window.location.href = "index.html"; // go to main app
+    } else {
+      alert(data.error);
+    }
+  }
+
+  if (token) {
+    fetchActivities();
+  } else {
+    alert("Please log in first.");
+    window.location.href = "login.html";
+  }
+  // saveAndRender();
 });
