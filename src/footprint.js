@@ -15,13 +15,38 @@ document.addEventListener('DOMContentLoaded', function () {
     gas: 2.1
   };
 
-  let activities = JSON.parse(localStorage.getItem('activities')) || [];
+  // let activities = JSON.parse(localStorage.getItem('activities')) || [];
 
-  function saveAndRender() {
-    localStorage.setItem('activities', JSON.stringify(activities));
+  // function saveAndRender() {
+  //   localStorage.setItem('activities', JSON.stringify(activities));
+  //   renderActivities();
+  //   updateChart();
+  // }
+
+  let activities = [];
+  let token = localStorage.getItem("token"); // from login
+
+  async function fetchActivities() {
+    const res = await fetch("http://localhost:5000/api/activities", {
+      headers: { Authorization: token }
+    });
+    activities = await res.json();
     renderActivities();
     updateChart();
   }
+
+  async function addActivity(type, amount, co2, category) {
+    await fetch("http://localhost:5000/api/activities", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token
+      },
+      body: JSON.stringify({ type, amount, co2Value: co2, category })
+    });
+    fetchActivities();
+  }
+
 
   function calculateTotal() {
     return activities.reduce((sum, act) => sum + act.co2, 0).toFixed(2);
@@ -48,9 +73,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const amount = parseFloat(document.getElementById('activity-amount').value);
     const co2 = emissionsFactors[type] * amount;
     const category = document.querySelector(`#activity-type option[value="${type}"]`).dataset.category;
-    activities.push({ type, amount, co2, category });
+    // activities.push({ type, amount, co2, category });
+    // form.reset();
+    // saveAndRender();
+    addActivity(type, amount, co2, category);
     form.reset();
-    saveAndRender();
   });
 
   filter.addEventListener('change', renderActivities);
