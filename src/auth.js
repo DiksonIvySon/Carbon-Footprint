@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (res.ok && data.token) {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("username", data.username); // optional
-        window.location.href = "index.html"; // redirect to dashboard
+        localStorage.setItem("username", data.username); 
+        window.location.href = "index.html"; 
       } else {
         errorMessage.textContent = data.error || "Login failed.";
         errorMessage.style.display = "block";
