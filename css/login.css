@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background: #f4f8f7;
-    background-image: url(Images/nav-background.jpg);
+    background-image: url(../Images/nav-background.jpg);
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -9,12 +9,12 @@ body {
     height: 100vh;
     margin: 0;
 }
-.register-container {
+.login-container {
     background: #fff;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    width: 320px;
+    width: 300px;
 }
 h2 {
     margin-bottom: 1rem;
@@ -42,7 +42,7 @@ button {
 button:hover {
     background: #1b4332;
 }
-.login-link {
+.register-link {
     margin-top: 1rem;
     text-align: center;
 }
@@ -52,4 +52,3 @@ button:hover {
     margin-bottom: 1rem;
     display: none;
 }
-  

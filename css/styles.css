@@ -45,7 +45,7 @@ header > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-image: url(Images/nav-background.jpg);
+    background-image: url(../Images/nav-background.jpg);
     background-size: cover;
     position: absolute;
     width: 70vw;
@@ -177,7 +177,7 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url(Images/homebackground-image.jpeg);
+    background-image: url(../Images/homebackground-image.jpeg);
     background-size: cover;
     padding-bottom: 80px;
 }
@@ -191,7 +191,7 @@ button:hover {
     padding: 10px 20px;
     margin: 20px;
     color: white;
-    font-size: 80px;
+    font-size: 60px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -298,17 +298,17 @@ button:hover {
 }
 
 .info-page .stat-cards .stat-card1 {
-    background-image: url(Images/global-image.jpg);
+    background-image: url(../Images/global-image.jpg);
     background-size: cover;
 }
 
 .info-page .stat-cards .stat-card2 {
-    background-image: url(Images/average-per-person.jpg);
+    background-image: url(../Images/average-per-person.jpg);
     background-size: cover;
 }
 
 .info-page .stat-cards .stat-card3 {
-    background-image: url(Images/SA-background.jpg);
+    background-image: url(../Images/SA-background.jpg);
     background-size: cover;
 }
 
