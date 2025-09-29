@@ -25,9 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let activities = [];
   let token = localStorage.getItem("token"); // from login
+  // const API_BASE_URL = 'https://carbon-footprint-backend-rfpb.onrender.com';
+  const API_BASE_URL = window.location.hostname.includes('localhost')
+    ? 'http://localhost:5000'  
+    : 'https://carbon-backend.onrender.com';
 
   async function fetchActivities() {
-    const res = await fetch("http://localhost:5000/api/activities", {
+    const res = await fetch(`${API_BASE_URL}/api/activities`, {
       headers: { Authorization: token }
     });
     activities = await res.json();
@@ -36,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   async function addActivity(type, amount, co2, category) {
-    await fetch("http://localhost:5000/api/activities", {
+    await fetch(`${API_BASE_URL}/api/activities`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -119,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   async function login(email, password) {
-    const res = await fetch("http://localhost:5000/api/auth/login", {
+    const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })

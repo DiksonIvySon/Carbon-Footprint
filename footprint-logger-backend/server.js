@@ -7,7 +7,9 @@ const authRoutes = require("./routes/auth");
 const activityRoutes = require("./routes/activities");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://carbon-footprint-frontend-4nzs.onrender.com'
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
