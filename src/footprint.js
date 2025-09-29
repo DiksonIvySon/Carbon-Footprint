@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const data = await res.json();
     if (data.token) {
       localStorage.setItem("token", data.token);
-      window.location.href = "index.html"; // go to main app
+      window.location.href = "index.html"; 
     } else {
       alert(data.error);
     }
@@ -139,5 +139,4 @@ document.addEventListener('DOMContentLoaded', function () {
     alert("Please log in first.");
     window.location.href = "login.html";
   }
-  // saveAndRender();
 });
