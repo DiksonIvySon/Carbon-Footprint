@@ -26,7 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
   let activities = [];
   let token = localStorage.getItem("token"); // from login
   // const API_BASE_URL = 'https://carbon-footprint-backend-rfpb.onrender.com';
-  const API_BASE_URL = window.location.hostname.includes('localhost')
+  const isLocal = window.location.hostname.includes("localhost") || 
+                window.location.hostname.includes("127.0.0.1");
+
+  const API_BASE_URL = isLocal
     ? 'http://localhost:5000'  
     : 'https://carbon-backend.onrender.com';
 
@@ -46,14 +49,14 @@ document.addEventListener('DOMContentLoaded', function () {
         "Content-Type": "application/json",
         Authorization: token
       },
-      body: JSON.stringify({ type, amount, co2Value: co2, category })
+      body: JSON.stringify({ activity: type, amount, co2Value: co2, category })
     });
     fetchActivities();
   }
 
 
   function calculateTotal() {
-    return activities.reduce((sum, act) => sum + act.co2, 0).toFixed(2);
+    return activities.reduce((sum, act) => sum + act.co2Value, 0).toFixed(2);
   }
 
   function renderActivities() {
@@ -64,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
     filtered.forEach(act => {
       const div = document.createElement('div');
       div.className = 'activity-log';
-      div.textContent = `${act.type} (${act.amount}) - ${act.co2.toFixed(2)} kg CO₂`;
+      div.textContent = `${act.activity} (${act.amount}) - ${act.co2Value.toFixed(2)} kg CO₂`;
       logContainer.appendChild(div);
     });
 
@@ -114,8 +117,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateChart() {
     const totals = {};
     activities.forEach(act => {
-      if (!totals[act.type]) totals[act.type] = 0;
-      totals[act.type] += act.co2;
+      if (!totals[act.activity]) totals[act.activity] = 0;
+      totals[act.activity] += act.co2Value;
     });
     chart.data.labels = Object.keys(totals);
     chart.data.datasets[0].data = Object.values(totals);
