@@ -49,7 +49,9 @@ router.get("/community", async (req, res) => {
   const allActs = await Activity.aggregate([
     { $group: { _id: "$userId", total: { $sum: "$co2Value" } } }
   ]);
-  const avg = allActs.reduce((sum, u) => sum + u.total, 0) / allActs.length;
+  if (!allActs.length) return res.json({ communityAverage: 0 });
+  const total = allActs.reduce((sum, u) => sum + u.total, 0);
+  const avg = total / allActs.length;
   res.json({ communityAverage: avg });
 });
 
