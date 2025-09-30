@@ -62,6 +62,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  async function fetchCommunityAverage() {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/activities/community`);
+      const data = await res.json();
+
+      let commEl = document.getElementById('community-average');
+      if (!commEl) {
+        const cont = document.querySelector('.visualization .total-section');
+        commEl = document.createElement('div');
+        commEl.id = 'community-average';
+        cont.appendChild(commEl);
+      }
+      commEl.textContent = `Community average: ${data.communityAverage.toFixed(2)} kg CO₂`;
+    } catch (err) {
+      console.error('Failed to fetch community average', err);
+    }
+  }
+
   async function fetchLeaderboard() {
     const res = await fetch(`${API_BASE_URL}/api/activities/leaderboard`, {
       headers: { Authorization: token }
@@ -184,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchActivities();
     fetchWeeklySummary();
     fetchLeaderboard();
+    fetchCommunityAverage();
   } else {
     alert("Please log in first.");
     window.location.href = "login.html";
