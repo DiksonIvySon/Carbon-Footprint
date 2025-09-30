@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     totalEl.textContent = calculateTotal();
+    updateChart(filtered);
   }
 
   form.addEventListener('submit', e => {
@@ -153,9 +154,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  function updateChart() {
+  function updateChart(list = activities) {
     const totals = {};
-    activities.forEach(act => {
+    list.forEach(act => {
       if (!totals[act.activity]) totals[act.activity] = 0;
       totals[act.activity] += act.co2Value;
     });
