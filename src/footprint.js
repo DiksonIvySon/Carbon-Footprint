@@ -42,6 +42,27 @@ document.addEventListener('DOMContentLoaded', function () {
     updateChart();
   }
 
+  async function fetchWeeklySummary() {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/activities/weekly`, {
+        headers: { Authorization: token }
+      });
+      const data = await res.json();
+     
+      let weekEl = document.getElementById('weekly-total');
+      if (!weekEl) {
+        const cont = document.querySelector('.visualization .total-section');
+        weekEl = document.createElement('div');
+        weekEl.id = 'weekly-total';
+        cont.appendChild(weekEl);
+      }
+      weekEl.textContent = `Weekly total: ${data.weeklyTotal?.toFixed(2) || 0} kg CO₂`;
+    } catch (err) {
+      console.error('Failed to fetch weekly summary', err);
+    }
+  }
+
+
   async function addActivity(type, amount, co2, category) {
     await fetch(`${API_BASE_URL}/api/activities`, {
       method: "POST",
@@ -142,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (token) {
     fetchActivities();
+    fetchWeeklySummary()
   } else {
     alert("Please log in first.");
     window.location.href = "login.html";
