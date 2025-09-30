@@ -1,6 +1,6 @@
 @font-face {
     font-family: San-Francisco;
-    src: url(fonts/SFUIText-RegularG1.otf);
+    /* src: url(fonts/SFUIText-RegularG1.otf); */
 } 
 
 *{
@@ -368,7 +368,7 @@ button:hover {
     width: 100%;
 }
 
-.logging-page form, .filter-section, .chart-container , #activity-log-container{
+.logging-page form, .filter-section, .chart-container , #activity-log-container, #leaderboard{
     background: #f4f4f4;
     padding: 15px;
     border-radius: 8px;

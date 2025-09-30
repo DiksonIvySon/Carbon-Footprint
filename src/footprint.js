@@ -25,9 +25,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let activities = [];
   let token = localStorage.getItem("token"); // from login
+  // const API_BASE_URL = 'https://carbon-footprint-backend-rfpb.onrender.com';
+  const isLocal = window.location.hostname.includes("localhost") || 
+                window.location.hostname.includes("127.0.0.1");
+
+  const API_BASE_URL = isLocal
+    ? 'http://localhost:5000'  
+    : 'https://carbon-backend.onrender.com';
 
   async function fetchActivities() {
-    const res = await fetch("http://localhost:5000/api/activities", {
+    const res = await fetch(`${API_BASE_URL}/api/activities`, {
       headers: { Authorization: token }
     });
     activities = await res.json();
@@ -35,21 +42,78 @@ document.addEventListener('DOMContentLoaded', function () {
     updateChart();
   }
 
+  async function fetchWeeklySummary() {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/activities/weekly`, {
+        headers: { Authorization: token }
+      });
+      const data = await res.json();
+     
+      let weekEl = document.getElementById('weekly-total');
+      if (!weekEl) {
+        const cont = document.querySelector('.visualization .total-section');
+        weekEl = document.createElement('div');
+        weekEl.id = 'weekly-total';
+        cont.appendChild(weekEl);
+      }
+      weekEl.textContent = `Weekly total: ${data.weeklyTotal?.toFixed(2) || 0} kg CO₂`;
+    } catch (err) {
+      console.error('Failed to fetch weekly summary', err);
+    }
+  }
+
+  async function fetchCommunityAverage() {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/activities/community`);
+      const data = await res.json();
+
+      let commEl = document.getElementById('community-average');
+      if (!commEl) {
+        const cont = document.querySelector('.visualization .total-section');
+        commEl = document.createElement('div');
+        commEl.id = 'community-average';
+        cont.appendChild(commEl);
+      }
+      commEl.textContent = `Community average: ${data.communityAverage.toFixed(2)} kg CO₂`;
+    } catch (err) {
+      console.error('Failed to fetch community average', err);
+    }
+  }
+
+  async function fetchLeaderboard() {
+    const res = await fetch(`${API_BASE_URL}/api/activities/leaderboard`, {
+      headers: { Authorization: token }
+    });
+    const data = await res.json();
+    renderLeaderboard(data);
+  }
+
+  function renderLeaderboard(data) {
+    const lbContainer = document.getElementById('leaderboard');
+    lbContainer.innerHTML = '';
+    data.forEach((u, i) => {
+      const row = document.createElement('div');
+      row.className = 'leaderboard-row';
+      row.textContent = `${i + 1}. ${u.username} - ${u.total.toFixed(2)} kg CO₂`;
+      lbContainer.appendChild(row);
+    });
+  }
+
   async function addActivity(type, amount, co2, category) {
-    await fetch("http://localhost:5000/api/activities", {
+    await fetch(`${API_BASE_URL}/api/activities`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: token
       },
-      body: JSON.stringify({ type, amount, co2Value: co2, category })
+      body: JSON.stringify({ activity: type, category, co2Value: co2 })
     });
     fetchActivities();
   }
 
 
   function calculateTotal() {
-    return activities.reduce((sum, act) => sum + act.co2, 0).toFixed(2);
+    return activities.reduce((sum, act) => sum + act.co2Value, 0).toFixed(2);
   }
 
   function renderActivities() {
@@ -60,11 +124,12 @@ document.addEventListener('DOMContentLoaded', function () {
     filtered.forEach(act => {
       const div = document.createElement('div');
       div.className = 'activity-log';
-      div.textContent = `${act.type} (${act.amount}) - ${act.co2.toFixed(2)} kg CO₂`;
+      div.textContent = `${act.activity} (${act.amount}) - ${act.co2Value.toFixed(2)} kg CO₂`;
       logContainer.appendChild(div);
     });
 
     totalEl.textContent = calculateTotal();
+    updateChart(filtered);
   }
 
   form.addEventListener('submit', e => {
@@ -107,11 +172,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  function updateChart() {
+  function updateChart(list = activities) {
     const totals = {};
-    activities.forEach(act => {
-      if (!totals[act.type]) totals[act.type] = 0;
-      totals[act.type] += act.co2;
+    list.forEach(act => {
+      if (!totals[act.activity]) totals[act.activity] = 0;
+      totals[act.activity] += act.co2Value;
     });
     chart.data.labels = Object.keys(totals);
     chart.data.datasets[0].data = Object.values(totals);
@@ -119,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   async function login(email, password) {
-    const res = await fetch("http://localhost:5000/api/auth/login", {
+    const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
@@ -127,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const data = await res.json();
     if (data.token) {
       localStorage.setItem("token", data.token);
-      window.location.href = "index.html"; // go to main app
+      window.location.href = "index.html"; 
     } else {
       alert(data.error);
     }
@@ -135,9 +200,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (token) {
     fetchActivities();
+    fetchWeeklySummary();
+    fetchLeaderboard();
+    fetchCommunityAverage();
   } else {
     alert("Please log in first.");
     window.location.href = "login.html";
   }
-  // saveAndRender();
 });
