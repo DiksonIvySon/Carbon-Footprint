@@ -62,6 +62,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  async function fetchLeaderboard() {
+    const res = await fetch(`${API_BASE_URL}/api/activities/leaderboard`, {
+      headers: { Authorization: token }
+    });
+    const data = await res.json();
+    renderLeaderboard(data);
+  }
+
+  function renderLeaderboard(data) {
+    const lbContainer = document.getElementById('leaderboard');
+    lbContainer.innerHTML = '';
+    data.forEach((u, i) => {
+      const row = document.createElement('div');
+      row.className = 'leaderboard-row';
+      row.textContent = `${i + 1}. ${u.username} - ${u.total.toFixed(2)} kg CO₂`;
+      lbContainer.appendChild(row);
+    });
+  }
 
   async function addActivity(type, amount, co2, category) {
     await fetch(`${API_BASE_URL}/api/activities`, {
@@ -70,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
         "Content-Type": "application/json",
         Authorization: token
       },
-      body: JSON.stringify({ activity: type, amount, co2Value: co2, category })
+      body: JSON.stringify({ activity: type, category, co2Value: co2 })
     });
     fetchActivities();
   }
@@ -163,7 +181,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (token) {
     fetchActivities();
-    fetchWeeklySummary()
+    fetchWeeklySummary();
+    fetchLeaderboard();
   } else {
     alert("Please log in first.");
     window.location.href = "login.html";
