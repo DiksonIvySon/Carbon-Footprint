@@ -1,9 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("login-form");
   const errorMessage = document.getElementById("error-message");
-  const API_BASE_URL = window.location.hostname.includes('localhost')
-    ? 'http://localhost:5000'  
-    : 'https://carbon-backend.onrender.com';
+
+  // ✅ Support both localhost and 127.0.0.1 for local testing
+  const isLocal = window.location.hostname.includes("localhost") || 
+                  window.location.hostname.includes("127.0.0.1");
+
+  const API_BASE_URL = isLocal
+    ? "http://localhost:5000" // local backend
+    : "https://carbon-backend.onrender.com"; // deployed backend
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -23,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (res.ok && data.token) {
         // ✅ Successful login
         localStorage.setItem("token", data.token);
-        localStorage.setItem("username", data.username); 
-        window.location.href = "index.html"; 
+        localStorage.setItem("username", data.username);
+        window.location.href = "index.html";
       } else {
         // ❌ Show backend error message
         errorMessage.textContent = data.error || "Login failed.";
@@ -37,4 +42,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
