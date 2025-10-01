@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+  let token = localStorage.getItem("token"); // from login
+  if (!token) {
+    window.location.href = "login.html";
+    return;
+  }
+
   const form = document.getElementById('activity-form');
   const logContainer = document.getElementById('activity-log-container');
   const totalEl = document.getElementById('total-emissions');
@@ -15,17 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     gas: 2.1
   };
 
-  // let activities = JSON.parse(localStorage.getItem('activities')) || [];
-
-  // function saveAndRender() {
-  //   localStorage.setItem('activities', JSON.stringify(activities));
-  //   renderActivities();
-  //   updateChart();
-  // }
-
   let activities = [];
-  let token = localStorage.getItem("token"); // from login
-  // const API_BASE_URL = 'https://carbon-footprint-backend-rfpb.onrender.com';
   const isLocal = window.location.hostname.includes("localhost") || 
                 window.location.hostname.includes("127.0.0.1");
 
@@ -198,13 +195,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  if (token) {
-    fetchActivities();
-    fetchWeeklySummary();
-    fetchLeaderboard();
-    fetchCommunityAverage();
-  } else {
-    alert("Please log in first.");
-    window.location.href = "login.html";
-  }
+  fetchActivities();
+  fetchWeeklySummary();
+  fetchLeaderboard();
+  fetchCommunityAverage();
+
+  // if (token) {
+  //   fetchActivities();
+  //   fetchWeeklySummary();
+  //   fetchLeaderboard();
+  //   fetchCommunityAverage();
+  // } else {
+  //   alert("Please log in first.");
+  //   window.location.href = "login.html";
+  // }
 });
