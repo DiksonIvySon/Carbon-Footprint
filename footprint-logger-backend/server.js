@@ -10,14 +10,15 @@ const app = express();
 
 // ✅ Define allowed origins
 const allowedOrigins = [
-  "http://127.0.0.1:5500",                     
-  "http://localhost:5500",                     
+  "http://127.0.0.1:5500",
+  "http://localhost:5500",
   "https://carbon-footprint-frontend-4nzs.onrender.com"
 ];
 
 // ✅ CORS middleware
 app.use(cors({
   origin: function (origin, callback) {
+    // Allow server-to-server (no origin) and allowed domains
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -26,7 +27,18 @@ app.use(cors({
     }
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+  credentials: true
+}));
+
+app.options(/.*/, cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
 
