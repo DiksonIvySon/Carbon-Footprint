@@ -19,19 +19,29 @@ app.use((req, res, next) => {
 });
 
 const corsOptions = {
-  origin: [
-    "http://127.0.0.1:5500",
-    "http://localhost:5500",
-    "https://carbon-footprint-frontend-4nzs.onrender.com"
-  ],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+
+    const allowedOrigins = [
+      "http://127.0.0.1:5500",
+      "http://localhost:5500",
+      "https://carbon-footprint-frontend-4nzs.onrender.com"
+    ];
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.error("❌ CORS blocked for:", origin);
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "Accept"],
   credentials: true
 };
 
 app.use(cors(corsOptions));
-
-// Explicitly respond to preflight
 app.options(/.*/, cors(corsOptions));
 
 // // ✅ Define allowed origins
