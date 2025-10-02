@@ -206,18 +206,20 @@ document.addEventListener('DOMContentLoaded', function () {
       <button id="logout-btn">Logout</button>
     `;
 
-    document.getElementById("logout-btn").addEventListener("click", showLogoutPopup);
+    document.getElementById("logout-btn").addEventListener("click", showLogoutPopup(username));
   } else {
     window.location.href = "login.html";
   }
 
   //Logout functionality
-  function showLogoutPopup() {
+  function showLogoutPopup(username) {
     const popup = document.createElement("div");
     popup.classList.add("logout-popup");
     popup.innerHTML = `
       <div class="popup-content">
-        <p>Are you sure you want to log out?</p>
+        <img src="Images/logout-image.png" alt="logout image image" style="width:100%">
+        <p>Thank you for making the world a better place <b class="popup-username">${username}</b> You are a STAR</p>
+        <p class="popup-confirmation-question">Are you sure you want to log out?</p>
         <button id="confirm-logout">Yes</button>
         <button id="cancel-logout">Cancel</button>
       </div>
