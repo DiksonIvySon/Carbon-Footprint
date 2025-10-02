@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
     activities = await res.json();
     renderActivities();
     updateChart();
+    fetchLeaderboard();
   }
 
   async function fetchWeeklySummary() {
@@ -193,6 +194,51 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       alert(data.error);
     }
+  }
+
+
+  // User info in header
+  const userInfo = document.getElementById("user-info");
+  const username = localStorage.getItem("username");
+
+  if (username && token) {
+    userInfo.innerHTML = `
+      <p><span class="status"> Logged in as <br><strong>${username}</strong></span></p>
+      <button id="logout-btn">Logout</button>
+    `;
+
+    document.getElementById("logout-btn").addEventListener("click", () => showLogoutPopup(username));
+  } else {
+    window.location.href = "login.html";
+  }
+
+  //Logout functionality
+  function showLogoutPopup(username) {
+    const popup = document.createElement("div");
+    popup.classList.add("logout-popup");
+    popup.innerHTML = `
+      <div class="popup-content">
+        <img src="Images/logout-image.png" alt="logout image image" style="width:60%">
+        <h4>Thank you for making the world a better place</h4>
+        <h4><b class="popup-username">${username}</b></h4>
+        <h4>You are a STAR</h4>
+        <br>
+        <p class="popup-confirmation-question">Are you sure you want to log out?</p>
+        <button id="confirm-logout">Yes</button>
+        <button id="cancel-logout">Cancel</button>
+      </div>
+    `;
+    document.body.appendChild(popup);
+
+    document.getElementById("confirm-logout").addEventListener("click", () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      window.location.href = "login.html";
+    });
+
+    document.getElementById("cancel-logout").addEventListener("click", () => {
+      popup.remove();
+    });
   }
 
   fetchActivities();
