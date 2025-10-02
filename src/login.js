@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const API_BASE_URL = isLocal
     ? "http://localhost:5000" // local backend
-    : "https://carbon-backend.onrender.com"; // deployed backend
+    : "https://carbon-footprint-backend-rfpb.onrender.com"; // deployed backend
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();

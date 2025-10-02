@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const API_BASE_URL = isLocal
     ? 'http://localhost:5000'  
-    : 'https://carbon-backend.onrender.com';
+    : 'https://carbon-footprint-backend-rfpb.onrender.com';
 
   async function fetchActivities() {
     const res = await fetch(`${API_BASE_URL}/api/activities`, {
