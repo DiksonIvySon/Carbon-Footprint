@@ -3,81 +3,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-
-
-
 const authRoutes = require("./routes/auth");
 const activityRoutes = require("./routes/activities");
 
 const app = express();
 
-//
-
-app.use((req, res, next) => {
-  console.log("🌍 Incoming Origin:", req.headers.origin);
-  next();
-});
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl)
-    if (!origin) return callback(null, true);
-
-    const allowedOrigins = [
-      "http://127.0.0.1:5500",
-      "http://localhost:5500",
-      "https://carbon-footprint-frontend-4nzs.onrender.com"
-    ];
-
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.error("❌ CORS blocked for:", origin);
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
-  credentials: true
-};
-
-// app.use(cors(corsOptions));
+// ✅ This simple version worked (allowed everything)
 app.use(cors());
-app.options(/.*/, cors(corsOptions));
-
-// // ✅ Define allowed origins
-// const allowedOrigins = [
-//   "http://127.0.0.1:5500",
-//   "http://localhost:5500",
-//   "https://carbon-footprint-frontend-4nzs.onrender.com"
-// ];
-
-// // ✅ CORS middleware
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     // Allow server-to-server (no origin) and allowed domains
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       console.error("❌ CORS blocked for:", origin);
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "Authorization", "Accept"],
-//   credentials: true
-// }));
-
-// app.options(/.*/, cors({
-//   origin: function (origin, callback) {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true
-// }));
 
 app.use(express.json());
 
@@ -95,5 +27,6 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
 
 
