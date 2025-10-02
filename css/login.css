@@ -11,11 +11,16 @@ body {
 }
 
 .login-container {
-    background: linear-gradient(160deg, #0b3b3c 20%, white 20%);
+    background: linear-gradient(150deg, #0b3b3c 25%, white 25%);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    width: 300px;
+    max-width: 360px;
+
+}
+
+.login-container .login-image {
+    width: 100%;
 }
 
 h2 {
@@ -59,4 +64,11 @@ button:hover {
     font-size: 0.9rem;
     margin-bottom: 1rem;
     display: none;
+}
+
+
+/*Styling the login welcome section*/
+
+.login-welcome-container img {
+    width: 60px;
 }

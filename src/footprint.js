@@ -217,8 +217,11 @@ document.addEventListener('DOMContentLoaded', function () {
     popup.classList.add("logout-popup");
     popup.innerHTML = `
       <div class="popup-content">
-        <img src="Images/logout-image.png" alt="logout image image" style="width:100%">
-        <p>Thank you for making the world a better place <b class="popup-username">${username}</b> You are a STAR</p>
+        <img src="Images/logout-image.png" alt="logout image image" style="width:60%">
+        <h4>Thank you for making the world a better place</h4>
+        <h4><b class="popup-username">${username}</b></h4>
+        <h4>You are a STAR</h4>
+        <br>
         <p class="popup-confirmation-question">Are you sure you want to log out?</p>
         <button id="confirm-logout">Yes</button>
         <button id="cancel-logout">Cancel</button>

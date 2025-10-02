@@ -118,7 +118,7 @@ header .user-info {
 }
 
 .logout-popup .popup-content {
-  background: linear-gradient(160deg, green 30%, white 30%);
+  background: linear-gradient(160deg, #0b3b3c 30%, white 30%);
   padding: 20px;
   border-radius: 8px;
   text-align: center;
