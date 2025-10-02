@@ -106,6 +106,10 @@ header .user-info {
     color: white;
 }
 
+header .user-info {
+    margin: 5px 20px;
+}
+
 .logout-popup {
   position: fixed;
   top: 0; left: 0;
