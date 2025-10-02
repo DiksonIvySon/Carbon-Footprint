@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
     activities = await res.json();
     renderActivities();
     updateChart();
+    fetchLeaderboard();
   }
 
   async function fetchWeeklySummary() {
@@ -206,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <button id="logout-btn">Logout</button>
     `;
 
-    document.getElementById("logout-btn").addEventListener("click", showLogoutPopup(username));
+    document.getElementById("logout-btn").addEventListener("click", () => showLogoutPopup(username));
   } else {
     window.location.href = "login.html";
   }
