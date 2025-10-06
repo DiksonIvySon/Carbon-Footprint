@@ -1,11 +1,11 @@
-// routes/insights.js
 const express = require("express");
-const router = express.Router();
 const Activity = require("../models/Activity");
-const User = require("../models/User");
+const Goal = require("../models/Goal");
 const jwt = require("jsonwebtoken");
 
-// auth middleware (reuse same method as activities.js)
+const router = express.Router();
+
+// Middleware
 function auth(req, res, next) {
   const token = req.headers["authorization"];
   if (!token) return res.status(401).json({ error: "No token" });
@@ -17,102 +17,54 @@ function auth(req, res, next) {
   }
 }
 
-// helper to compute start-of-week (7 days ago)
-function weekAgo() {
-  const d = new Date();
-  d.setDate(d.getDate() - 7);
-  return d;
+// Generate a simple personalized tip
+function generateTip(category, total) {
+  const tips = {
+    travel: `Try cycling or walking twice this week to cut around ${(total * 0.2).toFixed(1)} kg CO₂.`,
+    food: `Go meat-free for two days to save ${(total * 0.15).toFixed(1)} kg CO₂.`,
+    energy: `Reduce your electricity usage by 10% to save ${(total * 0.1).toFixed(1)} kg CO₂.`,
+    default: `You're doing great! Keep monitoring your activities to stay eco-friendly.`
+  };
+
+  return tips[category] || tips.default;
 }
 
-// simple tip database per category
-const TIPS = {
-  transport: [
-    { text: "Try cycling twice this week to cut ~2 kg CO₂", estReduction: 2 },
-    { text: "Combine trips and avoid short car journeys to save ~1 kg", estReduction: 1 }
-  ],
-  food: [
-    { text: "Swap one meat meal for plant-based to save ~1.5 kg", estReduction: 1.5 },
-    { text: "Cut dairy for two meals to save ~1 kg", estReduction: 1 }
-  ],
-  energy: [
-    { text: "Turn off lights for 2 hours daily to save ~0.5 kg", estReduction: 0.5 },
-    { text: "Reduce heating by 1°C this week to save ~3 kg", estReduction: 3 }
-  ],
-  default: [
-    { text: "Try small changes — every bit helps!", estReduction: 0.5 }
-  ]
-};
+// Analyze emissions and return insights
+router.get("/weekly", auth, async (req, res) => {
+  const weekAgo = new Date();
+  weekAgo.setDate(weekAgo.getDate() - 7);
 
-// GET /api/insights - returns category totals, highest category, chosen tip, weeklyGoal + progress
-router.get("/", auth, async (req, res) => {
-  try {
-    const uid = req.user.id;
-    const since = weekAgo();
-    // aggregate by category across last 7 days for this user
-    const acts = await Activity.aggregate([
-      { $match: { userId: require('mongoose').Types.ObjectId(uid), date: { $gte: since } } },
-      { $group: { _id: "$category", total: { $sum: "$co2Value" } } }
-    ]);
+  const acts = await Activity.find({
+    userId: req.user.id,
+    date: { $gte: weekAgo }
+  });
 
-    const totals = {};
-    acts.forEach(a => totals[a._id] = a.total);
+  if (!acts.length) return res.json({ message: "No activity this week yet." });
 
-    // determine highest category
-    let highest = null;
-    let highestVal = 0;
-    Object.entries(totals).forEach(([cat, val]) => {
-      if (val > highestVal) { highestVal = val; highest = cat; }
-    });
+  // Group by category
+  const totalsByCategory = {};
+  acts.forEach(a => {
+    totalsByCategory[a.category] = (totalsByCategory[a.category] || 0) + a.co2Value;
+  });
 
-    if (!highest) highest = "default";
+  const [highestCategory, highestEmission] = Object.entries(totalsByCategory)
+    .sort((a, b) => b[1] - a[1])[0];
 
-    // pick a tip heuristically (first available)
-    const tipsForCat = TIPS[highest] || TIPS.default;
-    const tip = tipsForCat[0];
+  const tip = generateTip(highestCategory, highestEmission);
 
-    // fetch user's weeklyGoal
-    const user = await User.findById(uid).select("weeklyGoal username");
-    const weeklyGoal = user.weeklyGoal || { targetKg: 0, progressKg: 0, weekStart: new Date() };
+  // Save or update a goal for the week
+  const goal = await Goal.findOneAndUpdate(
+    { userId: req.user.id, weekStart: { $gte: weekAgo } },
+    { category: highestCategory, targetReduction: (highestEmission * 0.15).toFixed(2) },
+    { new: true, upsert: true }
+  );
 
-    // compute progress: e.g., current total (this week) vs baseline - for now, progress = (baseline - current)
-    // simpler: progressKg = weeklyGoal.targetKg - highestVal (or something meaningful). We'll expose both numbers.
-    const response = {
-      username: user.username,
-      totals,
-      highestCategory: highest,
-      highestValueKg: highestVal,
-      tip: tip.text,
-      suggestedReductionKg: tip.estReduction,
-      weeklyGoal
-    };
-
-    return res.json(response);
-  } catch (err) {
-    console.error("Insights error", err);
-    res.status(500).json({ error: "Server error computing insights" });
-  }
-});
-
-// POST /api/insights/goal - set target (body: { targetKg })
-router.post("/goal", auth, async (req, res) => {
-  try {
-    const uid = req.user.id;
-    const { targetKg } = req.body;
-    if (typeof targetKg !== "number") return res.status(400).json({ error: "Invalid targetKg" });
-
-    const weekStart = new Date();
-    weekStart.setHours(0,0,0,0);
-
-    const user = await User.findByIdAndUpdate(uid, {
-      $set: { "weeklyGoal.targetKg": targetKg, "weeklyGoal.progressKg": 0, "weeklyGoal.weekStart": weekStart }
-    }, { new: true }).select("weeklyGoal");
-
-    // Ideally emit real-time update via socket (we'll show how to emit from server when integrated)
-    res.json({ weeklyGoal: user.weeklyGoal });
-  } catch (err) {
-    console.error("Set goal error", err);
-    res.status(500).json({ error: "Unable to set weekly goal" });
-  }
+  res.json({
+    category: highestCategory,
+    weeklyTotal: highestEmission.toFixed(2),
+    tip,
+    goal
+  });
 });
 
 module.exports = router;
