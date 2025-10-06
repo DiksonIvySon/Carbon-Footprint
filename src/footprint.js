@@ -263,6 +263,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.querySelector('.primary-navigation').classList.toggle('open');
+  });
+
+
   fetchWeeklyInsights();
 
 

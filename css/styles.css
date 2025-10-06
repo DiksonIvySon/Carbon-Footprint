@@ -35,7 +35,6 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: red;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -215,7 +214,7 @@ button:hover {
     justify-content: center;
     background-image: url(../Images/homebackground-image.jpeg);
     background-size: cover;
-    padding-bottom: 80px;
+    padding-bottom: 10px;
 }
 
 .homePage .home-page-main-text {
@@ -259,11 +258,11 @@ button:hover {
 }
 
 .info-page .top-dividing-curve {
-    height: 50px;
+    height: 30px;
     width: 100vw;
     background-color: #0b3b3c;
     position: absolute;
-    top: -50px;
+    top: -20px;
     border-radius: 50px 50px 0px 0px;
 }
 
@@ -625,3 +624,176 @@ footer h2 {
 .web-author:hover {
     color: #90c8d1;
 }
+
+
+/************************************************** === RESPONSIVE DESIGN === ***********************************************************/
+
+/* --- Mobile first (max-width: 600px) --- */
+@media (max-width: 600px) {
+
+  header > div {
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0;
+    padding: 10px;
+    margin: 10px 10px 0px 10px;
+    border-radius: 50px;
+  }
+
+  .primary-navigation {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+  }
+
+  .nav-item {
+    display: block;
+    width: 100%;
+  }
+
+  .info-page .defining-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .info-page .defining-container .main-img img {
+    min-width: 100%;
+  }
+
+  .info-page .stat-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logging-main-content {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .visualization {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .homePage .home-page-main-text .home-page-heading {
+    font-size: 2.5rem;
+  }
+
+  .homePage p {
+    font-size: 1.2rem;
+  }
+
+  .pageHeading {
+    font-size: 2.2rem;
+  }
+
+  .tips-card {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .tipsPost-Page {
+    text-align: center;
+    margin: 50px 10px 140px 10px;
+    padding-top: 70px;
+}
+
+  /* .footer .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .dropdown-content {
+    display: flex;
+    flex-direction: column;
+  } */
+}
+
+/* --- Tablets (601px to 1024px) --- */
+@media (min-width: 601px) and (max-width: 1024px) {
+  header > div {
+    width: 90%;
+  }
+
+  .info-page .defining-container {
+    flex-wrap: wrap;
+  }
+
+  .logging-main-content {
+    flex-direction: column;
+  }
+
+  .visualization {
+    width: 100%;
+  }
+
+  .tips-card {
+    width: 45%;
+  }
+
+  .stat-cards {
+    flex-wrap: wrap;
+  }
+
+  .tipsPost-Page {
+    text-align: center;
+    margin: 50px 70px 140px 70px;
+    padding-top: 70px;
+  }
+}
+
+/* --- Large screens (≥1025px) --- */
+@media (min-width: 1025px) {
+  header > div {
+    width: 70%;
+  }
+
+  .info-page .defining-container {
+    flex-direction: row;
+  }
+
+  .tips-card {
+    width: 22%;
+  }
+
+  .logging-main-content {
+    flex-direction: row;
+  }
+}
+
+.menu-toggle {
+  display: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+@media (max-width: 600px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  header > div {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .primary-navigation {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    background-color: rgba(0,0,0,0.85);
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .primary-navigation.open {
+    display: flex;
+  }
+}
+
