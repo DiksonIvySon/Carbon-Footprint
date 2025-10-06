@@ -147,6 +147,17 @@
                     <div class="chart-container">
                         <canvas id="emissionsChart"></canvas>
                     </div>
+
+                    <div class="weekly-goal" id="weekly-insight">
+                        <h3>Weekly Insight</h3>
+                        <p>Loading...</p>
+                        <!-- <div>
+                            <label>Set weekly reduction target (kg):</label>
+                            <input id="goal-input" type="number" min="0" step="0.1">
+                            <button id="set-goal-btn">Set Goal</button>
+                        </div> -->
+                    </div>
+
                 </div>
             </div>
         </section>   
@@ -349,5 +360,6 @@
 
     <!--Functionality Script-->
     <script src="src/footprint.js" defer></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 </body>
 </html>
