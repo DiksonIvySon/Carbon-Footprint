@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // ✅ Successful login
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.username);
+        localStorage.setItem("userId", data.userId);
         window.location.href = "index.html";
       } else {
         // ❌ Show backend error message

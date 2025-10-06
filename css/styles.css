@@ -110,6 +110,10 @@ header .user-info {
     margin: 5px 20px;
 }
 
+header .user-info button{
+    border-radius: 0px 0px 30px 0px;
+}
+
 .logout-popup {
   position: fixed;
   top: 0; left: 0;
