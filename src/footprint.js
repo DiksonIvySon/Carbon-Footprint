@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     renderActivities();
     updateChart();
     fetchLeaderboard();
+    fetchWeeklyInsights();
   }
 
   async function fetchWeeklySummary() {
@@ -240,6 +241,30 @@ document.addEventListener('DOMContentLoaded', function () {
       popup.remove();
     });
   }
+
+  // Fetch weekly insight
+  async function fetchWeeklyInsights() {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/insights/weekly`, {
+        headers: { Authorization: token }
+      });
+      const data = await res.json();
+
+      const insightEl = document.getElementById("weekly-insight");
+      if (!insightEl) return;
+      insightEl.innerHTML = `
+        <h3>Weekly Insight</h3>
+        <p><strong>Top category:</strong> ${data.category}</p>
+        <p><strong>Goal:</strong> Reduce by ${data.goal.targetReduction} kg CO₂</p>
+        <p><em>${data.tip}</em></p>
+      `;
+    } catch (err) {
+      console.error("Failed to fetch insights", err);
+    }
+  }
+
+  fetchWeeklyInsights();
+
 
   fetchActivities();
   fetchWeeklySummary();
