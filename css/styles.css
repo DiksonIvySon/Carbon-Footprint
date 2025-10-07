@@ -35,9 +35,10 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
+    
 }
 
 header > div {
@@ -47,15 +48,15 @@ header > div {
     background-image: url(../Images/nav-background.jpg);
     background-size: cover;
     position: absolute;
-    width: 70vw;
-    padding: 5px 0px 5px 0px;
+    width: 100%;
+    padding: 10px 20px;
     min-height: 64px;
     border-radius: 0px 0px 50px 50px;
+    box-sizing: border-box;
 }
 
 .logo {
-    margin: 0rem 2rem 0rem 2rem;
-    position: relative;
+    margin: 0;
 }
 
 .logo a {
@@ -71,46 +72,83 @@ header > div {
 .logo h1 {
     margin: 0 ;
     padding: 0;
+    font-size: 1.8rem;
 }
 
-.primary-navigation {
+.logo h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+
+/* .primary-navigation {
     display: flex;
     gap: clamp(1.5rem, 5vw, 3.5rem);
     padding: 1.1rem;
     z-index: 3000;
     padding: 1.1rem 2.1rem 1.1rem 1.1rem;
+} */
+
+.primary-navigation {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .primary-navigation li {
     list-style: none;
-    padding: 10px;
-    text-align: center;
 }
 
 .nav-link {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    position: relative;
-    transition: all 0.4s;
-    padding: 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 .nav-link:hover, .nav-link:focus {
     color: #5badcc;
-    background-color: rgb(214, 212, 212);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 header .user-info {
     color: white;
+    margin-left: 1rem;
+    text-align: right;
 }
 
-header .user-info {
-    margin: 5px 20px;
+.user-info button {
+  border-radius: 8px;
+  padding: 5px 10px;
+  background-color: #5badcc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-header .user-info button{
-    border-radius: 0px 0px 30px 0px;
+.user-info button:hover {
+  background-color: #4698b3;
+}
+
+.logout-popup .popup-content {
+  background: linear-gradient(160deg, #0b3b3c 30%, white 30%);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 .logout-popup {
@@ -129,6 +167,8 @@ header .user-info button{
   padding: 20px;
   border-radius: 8px;
   text-align: center;
+  max-width: 90%;
+  box-sizing: border-box;
 }
 
 .logout-popup button {
@@ -252,9 +292,9 @@ button:hover {
     position: relative;
     background-color: #0b3b3c;
     border-radius: 0px 0px 50px 50px;
-    padding-bottom: 200px;
+    padding-bottom: 20px;
     padding-top: 150px;
-    margin-bottom: 300px;
+    margin-bottom: 200px;
 }
 
 .info-page .top-dividing-curve {
@@ -268,7 +308,6 @@ button:hover {
 
 .info-page .defining-container {
     display: flex;
-    
     justify-content: space-evenly;
     gap: 40px;
     flex-wrap: wrap;
@@ -286,8 +325,8 @@ button:hover {
 .info-page .defining-container .main-img img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
-    min-width: 600px;
+    border-radius: 5px;
+    /* min-width: 600px; */
 }
 
 .info-page .small-top-img img{
@@ -375,7 +414,7 @@ button:hover {
 
 /*Styling the logging page........................................................................................................*/
 .logging-page {
-    padding-top: 80px;
+    padding-top: 90px;
     margin: 45px;
 }
 
@@ -442,7 +481,7 @@ button:hover {
 .tipsPost-Page {
     text-align: center;
     margin: 50px 70px 140px 70px;
-    padding-top: 70px;
+    padding-top: 80px;
 }
 
 div.scroll-container {
@@ -637,18 +676,50 @@ footer h2 {
     border-radius: 0;
     padding: 10px;
     margin: 10px 10px 0px 10px;
-    border-radius: 50px;
+    align-items: flex-start;
+    border-radius: 0 0 30px 30px;
+  }
+
+  .logging-page {
+    padding-top: 80px;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
   }
 
   .primary-navigation {
+    display: none;
     flex-direction: column;
-    gap: 10px;
-    padding: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.9);
+    border-radius: 0 0 30px 30px;
+    text-align: center;
+    padding: 1rem 0;
   }
 
-  .nav-item {
+  .primary-navigation.active {
+    display: flex;
+  }
+
+  .primary-navigation li {
+    width: 100%;
+  }
+
+  .nav-link {
     display: block;
     width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+  }
+
+  .user-info {
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
   }
 
   .info-page .defining-container {
@@ -668,6 +739,11 @@ footer h2 {
   .logging-main-content {
     flex-direction: column;
     padding: 10px;
+  }
+
+  .logging-page {
+    padding-top: 80px;
+    margin: 15px;
   }
 
   .visualization {
@@ -708,6 +784,96 @@ footer h2 {
     display: flex;
     flex-direction: column;
   } */
+
+  .homePage {
+    flex-direction: column;
+    background-position: center;
+    background-size: cover;
+    padding: 20px;
+  }
+
+  .homePage .home-page-main-text {
+    padding: 5px;
+  }
+
+  .homePage .home-page-main-text .home-page-heading {
+    font-size: 2rem; /* ~32px */
+    margin: 10px;
+    line-height: 1.2;
+  }
+
+  .homePage .home-page-main-text p {
+    font-size: 1rem; /* ~16px */
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .homePage button {
+    font-size: 1.2rem;
+    padding: 10px 15px;
+  }
+
+  /* --- Info Page --- */
+  .info-page {
+    padding-top: 80px;
+    padding-bottom: 60px;
+    margin-bottom: 0px;
+  }
+
+  .info-page .defining-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .info-page .defining-container .main-img {
+    max-width: 100%;
+  }
+
+  .info-page .defining-container .defining-info {
+    min-width: auto;
+    width: 90%;
+    text-align: center;
+  }
+
+  .info-page .defining-container .defining-info h2 {
+    font-size: 1.8rem;
+  }
+
+  .info-page .defining-container .defining-info p {
+    font-size: 1rem;
+    margin: 10px;
+  }
+
+  .info-page .states-container {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .info-page .stat-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .info-page .stat-cards .stat-card {
+    width: 90%;
+    padding: 20px 10px;
+  }
+
+  .info-page .stat-cards .stat-card h1 {
+    font-size: 2.5rem; /* shrink from 80px */
+  }
+
+  .info-page .stat-cards .stat-card h3 {
+    font-size: 1rem;
+  }
+
+  .info-page .stat-cards .stat-card p {
+    font-size: 0.9rem;
+    max-width: 90%;
+  }
 }
 
 /* --- Tablets (601px to 1024px) --- */
@@ -740,6 +906,24 @@ footer h2 {
     text-align: center;
     margin: 50px 70px 140px 70px;
     padding-top: 70px;
+  }
+
+  .homePage .home-page-main-text .home-page-heading {
+    font-size: 3rem;
+  }
+
+  .info-page .defining-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-page .stat-cards {
+    flex-wrap: wrap;
+  }
+
+  .info-page .stat-cards .stat-card {
+    flex: 1 1 45%;
+    margin: 10px;
   }
 }
 
