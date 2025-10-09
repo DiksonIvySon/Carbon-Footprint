@@ -672,12 +672,12 @@ footer h2 {
 
   header > div {
     flex-direction: column;
-    width: 100%;
+    width: 97%;
     border-radius: 0;
     padding: 10px;
     margin: 10px 10px 0px 10px;
     align-items: flex-start;
-    border-radius: 0 0 30px 30px;
+    border-radius: 30px 30px 30px 30px;
   }
 
   .logging-page {
