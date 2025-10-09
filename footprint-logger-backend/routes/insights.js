@@ -59,6 +59,14 @@ router.get("/weekly", auth, async (req, res) => {
     { new: true, upsert: true }
   );
 
+  if (!activities.length) {
+    return res.json({
+      topCategory: "N/A",
+      targetReduction: 0,
+      tip: "Add some activities to start getting insights!"
+    });
+  }
+
   res.json({
     category: highestCategory,
     weeklyTotal: highestEmission.toFixed(2),

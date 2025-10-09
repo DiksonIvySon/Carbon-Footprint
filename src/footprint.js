@@ -244,24 +244,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Fetch weekly insight
   async function fetchWeeklyInsights() {
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/insights/weekly`, {
-        headers: { Authorization: token }
-      });
-      const data = await res.json();
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/insights/weekly`, {
+      headers: { Authorization: token }
+    });
 
-      const insightEl = document.getElementById("weekly-insight");
-      if (!insightEl) return;
-      insightEl.innerHTML = `
-        <h3>Weekly Insight</h3>
-        <p><strong>Top category:</strong> ${data.category}</p>
-        <p><strong>Goal:</strong> Reduce by ${data.goal.targetReduction} kg CO₂</p>
-        <p><em>${data.tip}</em></p>
-      `;
-    } catch (err) {
-      console.error("Failed to fetch insights", err);
-    }
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+
+    const data = await res.json();
+    const insightEl = document.getElementById("weekly-insight");
+    if (!insightEl) return;
+
+    insightEl.innerHTML = `
+      <h3>Weekly Insight</h3>
+      <p><strong>Top category:</strong> ${data.category || "N/A"}</p>
+      <p><strong>Goal:</strong> Reduce by ${data.goal?.targetReduction || 0} kg CO₂</p>
+      <p><em>${data.tip || "Welcome to Footprint Logger, No insights available, <br> Please start logging to get insights."}</em></p>
+    `;
+  } catch (err) {
+    console.error("Failed to fetch insights:", err);
   }
+}
+
 
   document.getElementById('menu-toggle').addEventListener('click', () => {
     document.querySelector('.primary-navigation').classList.toggle('open');
