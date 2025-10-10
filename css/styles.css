@@ -774,12 +774,26 @@ footer h2 {
     padding-top: 70px;
 }
 
-  /* .footer .container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+.dropbtn {
+  background-color: #90c8d1;
+  color: white;
+  padding: 16px 13px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px 10px 0px 0px;
+}
 
+.footer .container {
+    /* flex-direction: column; */
+    /* align-items: center; */
+    text-align: center;
+  } 
+
+  .footer .container .powered-by{
+    display: none;
+  } 
+  
+  /*
   .dropdown-content {
     display: flex;
     flex-direction: column;
